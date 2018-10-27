@@ -2,6 +2,7 @@ package com.practo.meetup
 
 import android.content.res.Resources
 
+// A dummy implementation for ViewManager interface
 class BaseViewManagerImpl(val resources: Resources) : BaseViewManager {
     
     override fun setRetryCallback(retryCallback: () -> Unit) {
