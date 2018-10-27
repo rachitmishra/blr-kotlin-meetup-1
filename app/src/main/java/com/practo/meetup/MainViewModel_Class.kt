@@ -44,14 +44,9 @@ class MainViewModel(): ViewModel()
 
     }
 
-fun do() {
-}
-
     // Inline classes 1.3
 
 
     // enum classes
-    // go to UI state
-
 
 }
