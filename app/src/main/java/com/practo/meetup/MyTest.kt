@@ -6,12 +6,14 @@ class MyTest {
 
     fun testEx() {
 
+        // Using standard library functions ex. apply
         viewModel.apply {
             isNotNull()
             selectedPosition isEqualTo 0
         }
     }
 
+    // Using extensions and infix functions
     infix fun Any?.isEqualTo(check: Any?) {
         // Truth.assertThat(this).isEqualTo(check)
     }
