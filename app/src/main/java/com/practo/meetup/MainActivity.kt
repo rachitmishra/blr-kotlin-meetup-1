@@ -8,8 +8,10 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class MainActivity : AppCompatActivity(), UiStateManager {
 
+    // lateinit the viewModel it may not always be required once the class instance is being created
     lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,13 +35,14 @@ class MainActivity : AppCompatActivity(), UiStateManager {
                 }
 
         // Higher order functions
-
         textView.setOnClickListener {
+            // handleOnClick is our higher order function which takes a task function with signature () -> Unit
             handleOnClick {
                 print("Clicked")
             }
         }
 
+        // Using function references in case the lambda is not simplified
         textView.setOnClickListener(this::aSlightlyBiggerFun)
     }
 
@@ -48,25 +51,20 @@ class MainActivity : AppCompatActivity(), UiStateManager {
     }
 
     override fun onError(): () -> Unit {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented")
     }
 
     override fun onErrorConnection(): () -> Unit {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented")
     }
 
     override fun onLoading(): () -> Unit {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented")
     }
 
     override fun onLoaded(): () -> Unit {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented")
     }
-
-
-
-
-
 
 
     // Top level function
@@ -89,9 +87,6 @@ class MainActivity : AppCompatActivity(), UiStateManager {
             }
 
     }
-
-
-
 
 
     // local function
