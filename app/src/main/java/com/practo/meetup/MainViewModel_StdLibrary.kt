@@ -2,9 +2,7 @@ package com.practo.meetup
 
 import android.arch.lifecycle.ViewModel
 
-/**
- * Interface delegation
- */
+// Using the power of Kotlin std library
 class MainViewModel_StdLibrary() : ViewModel() {
 
     data class Subscription(val serviceName: String, val expiredOn: String?, val active: Boolean)
@@ -47,6 +45,8 @@ class MainViewModel_StdLibrary() : ViewModel() {
     fun isGreaterThan5(x: Int) = x > 5
 
     fun ex3() {
+        
+        // fluent chained operations on a list
         listOf(1, 2, 3)
             .map(triple)
             .filter(::isGreaterThan5)
@@ -60,13 +60,7 @@ class MainViewModel_StdLibrary() : ViewModel() {
 
     data class SubscriptionClubbed(
         var keyword: String = "",
-        var subscriptions: List<ASubscription> = emptyList()
-    ) {
-
-        val totalActiveSubscriptions: Int by lazy(LazyThreadSafetyMode.NONE) {
-            subscriptions.filter { it.active }.count()
-        }
-    }
+        var subscriptions: List<ASubscription> = emptyList())
 
     var subscriptionClubbed: List<SubscriptionClubbed> = emptyList()
 
@@ -74,10 +68,8 @@ class MainViewModel_StdLibrary() : ViewModel() {
         return subscriptionClubbed.groupBy {
             it.keyword
         }.flatMap {
+            // destructing using * operator
             listOf(it.key, *(it.value.sortedByDescending { it.totalActiveSubscriptions }.toTypedArray()))
         }
     }
-
-    fun getMaxActiveSubscriptions() = subscriptionClubbed.asSequence().map { it.totalActiveSubscriptions }.max() ?: 0
-
 }
