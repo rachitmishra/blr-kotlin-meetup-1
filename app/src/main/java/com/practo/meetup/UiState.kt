@@ -14,6 +14,7 @@ enum class UiState {
 
 interface UiStateManager {
 
+    // Interface segregation and providing default implementations inside an inteface
     fun initStateObserver(lifeCycle: LifecycleOwner, uiState: LiveData<UiState>) {
         uiState.observe(lifeCycle, Observer {
             when (it) {
